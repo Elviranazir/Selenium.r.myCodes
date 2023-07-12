@@ -3,6 +3,7 @@ package Utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,8 @@ public class BaseDriver {
 
 
     static {
+
+        closePreviousDrivers();
         Logger logger= Logger.getLogger(""); // shows only severse problem on the consol
         logger.setLevel(Level.SEVERE);
        driver = new ChromeDriver();
@@ -35,6 +38,12 @@ public class BaseDriver {
         driver.quit();
     }
 
-
+    public static void closePreviousDrivers() {
+        try {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
