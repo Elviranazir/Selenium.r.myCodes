@@ -18,6 +18,7 @@ public class _01_StatusOfElement extends BaseDriver {
         System.out.println("tuesday.isDisplayed() = " + tuesday.isDisplayed());
         System.out.println("tuesday.isEnabled() = " + tuesday.isEnabled());
         System.out.println("tuesday.isSelected() = " + tuesday.isSelected());
+        System.out.println(".............................................");
 
         MyMethods.myWait(3);
         tuesday.click();
