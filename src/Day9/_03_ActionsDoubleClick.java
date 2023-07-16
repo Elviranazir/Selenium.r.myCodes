@@ -9,18 +9,20 @@ import org.openqa.selenium.interactions.Actions;
 
 public class _03_ActionsDoubleClick extends BaseDriver {
     @Test
-
-    public void Test1(){
-
+    public void test1() {
         driver.get("https://demoqa.com/buttons");
+        WebElement doubleClick = driver.findElement(By.xpath("//button[text()='Double Click Me']"));
 
-        WebElement doubleclick = driver.findElement(By.id("doubleClickBtn"));
         Actions actions = new Actions(driver);
-//        Action action = actions.moveToElement(doubleclick).doubleClick().build();
+
+//        Action action = actions.moveToElement(doubleClick).doubleClick().build();
 //        action.perform();
 
-        Action action = actions.doubleClick(doubleclick).build();
+        Action action = actions.doubleClick(doubleClick).build();
         action.perform();
+
+        waitAndQuit();
+
 
     }
 

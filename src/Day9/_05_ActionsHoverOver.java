@@ -12,24 +12,26 @@ import org.openqa.selenium.interactions.Actions;
 public class _05_ActionsHoverOver extends BaseDriver {
 
     @Test
-
-    public void Test1() {
+    public void test1(){
 
         driver.get("https://www.ebay.com/");
+
         WebElement electronics = driver.findElement(By.linkText("Electronics"));
 
         Actions actions = new Actions(driver);
+
         Action action = actions.moveToElement(electronics).build();
         action.perform();
+
         MyMethods.myWait(3);
-        WebElement headphones = driver.findElement(By.linkText("Headphones"));
-        headphones.click();
+        WebElement headPhones = driver.findElement(By.linkText("Headphones"));
+        headPhones.click();
+
         String url = driver.getCurrentUrl();
-        Assert.assertTrue(url.contains("Headphones"));
 
-        MyMethods.myWait(2);
+        Assert.assertTrue("Test Failed",url.contains("Headphones"));
+
         waitAndQuit();
-
     }
 
 }

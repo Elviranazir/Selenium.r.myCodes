@@ -10,23 +10,22 @@ import org.openqa.selenium.interactions.Actions;
 
 public class _04_ActionsRightClick extends BaseDriver {
     @Test
-
-    public void Test1(){
-
+    public void test1(){
         driver.get("https://demoqa.com/buttons");
 
-        WebElement rightClickBtn = driver.findElement(By.id("rightClickBtn"));
+        WebElement rightClickButton = driver.findElement(By.id("rightClickBtn"));
 
         Actions actions = new Actions(driver);
-//        Action action = actions.moveToElement(rightClickBtn).contextClick().build();
+
+//        Action action = actions.moveToElement(rightClickButton).contextClick().build();
 //        action.perform();
 
-        Action action = actions.contextClick(rightClickBtn).build();
+        Action action = actions.contextClick(rightClickButton).build();
         action.perform();
 
-        // actions.contextClick(rightClickBtn).build().perform();  can perform the action once
+//        actions.contextClick(rightClickButton).build().perform(); can perform the action once
 
-        action.perform();  // we can perform the same action multiple times
+        action.perform(); // we can perform the same action multiple times
 
         waitAndQuit();
 

@@ -13,8 +13,7 @@ import javax.swing.*;
 public class _02_ActionsClick extends BaseDriver {
 
     @Test
-    public void test1(){
-
+    public void test1() {
         driver.get("https://demoqa.com/buttons");
 
         WebElement singleClick = driver.findElement(By.xpath("//button[text()='Click Me']"));

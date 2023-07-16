@@ -10,18 +10,17 @@ import org.openqa.selenium.interactions.Actions;
 
 public class _08_ActionsSendKeys extends BaseDriver {
     @Test
-    public void test1() {
+    public void test1(){
 
-        driver.get("https://demoqa.com/auto-complete\n");
+        driver.get("https://demoqa.com/auto-complete");
 
-        WebElement inputbox = driver.findElement(By.id("autoCompleteMultipleContainer"));
-       // inputbox.sendKeys("John");
+        WebElement inputBox = driver.findElement(By.id("autoCompleteMultipleContainer"));
+        //inputBox.sendKeys("John");
 
         Actions actions = new Actions(driver);
-        Action action = actions.moveToElement(inputbox).click().keyDown(Keys.SHIFT).sendKeys("a").keyUp(Keys.SHIFT)
-                        .sendKeys("ohn").build();
-        action.perform();
+        Action action = actions.moveToElement(inputBox).click().keyDown(Keys.SHIFT).sendKeys("j").keyUp(Keys.SHIFT)
+                .sendKeys("ohn").build();
 
-        waitAndQuit();
+        action.perform();
     }
 }
