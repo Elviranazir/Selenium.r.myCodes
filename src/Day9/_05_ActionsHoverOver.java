@@ -23,7 +23,7 @@ public class _05_ActionsHoverOver extends BaseDriver {
         Action action = actions.moveToElement(electronics).build();
         action.perform();
 
-        MyMethods.myWait(3);
+        MyMethods.myWait(1);
         WebElement headPhones = driver.findElement(By.linkText("Headphones"));
         headPhones.click();
 
