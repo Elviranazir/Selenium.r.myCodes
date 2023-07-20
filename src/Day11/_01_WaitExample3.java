@@ -1,7 +1,6 @@
 package Day11;
 
 import Utilities.BaseDriver;
-import Utilities.MyMethods;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,19 +11,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class _01_WaitExample3 extends BaseDriver {
+
     /**
      * Go to "https://www.demoblaze.com/index.html"
      * Click on Samsung Galaxy s6
      * Click on "Add to Cart"
+     * Close the alert
      * Click on Product Store to go back to the main page
      * Verify that you are on the main page
      **/
-    @Test
-    public void waitExample(){
-        driver.get("https://demoblaze.com/index.html");
 
-        WebElement galaxy = driver.findElement(By.xpath("//a[text()='Samsung galaxy s6']"));
-        galaxy.click();
+    @Test
+    public void waitExample() {
+        driver.get("https://www.demoblaze.com/index.html");
+
+        WebElement samsungS6 = driver.findElement(By.xpath("//a[text()='Samsung galaxy s6']"));
+        samsungS6.click();
 
         WebElement addToCart = driver.findElement(By.xpath("//a[text()='Add to cart']"));
         addToCart.click();
@@ -34,11 +36,11 @@ public class _01_WaitExample3 extends BaseDriver {
 
         driver.switchTo().alert().accept();
 
-        WebElement goback = driver.findElement(By.className("navbar-brand"));
-        goback.click();
+        WebElement productStore = driver.findElement(By.id("nava"));
+        productStore.click();
 
+        Assert.assertEquals("Test failed", "https://www.demoblaze.com/index.html", driver.getCurrentUrl());
 
-        Assert.assertTrue("Test failed", driver.getCurrentUrl().equals("https://demoblaze.com/index.html"));
         waitAndQuit();
     }
 }
