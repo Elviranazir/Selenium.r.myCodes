@@ -6,6 +6,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
+import java.util.Set;
 
 public class _01_Scroll extends BaseDriver {
 
@@ -93,10 +97,57 @@ public class _01_Scroll extends BaseDriver {
 
         MyMethods.myWait(3);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", storyElement);
+        js.executeScript("arguments[0].scrollIntoView(true)", storyElement);
 
         waitAndQuit();
-
-
     }
+
+
+    @Test
+    public void JavaScriptClick() {
+        /**
+         * Go to "https://www.selenium.dev/"
+         * Click on all of the links that opens up a new tab except the ones that has "mailto" word in their href attribute
+         * Print out titles and urls of them
+         * Then close them one by one except the main
+         * Print the title and url of the main tab
+         * Then close it.
+         * **/
+
+        driver.get("https://www.selenium.dev/");
+        String mainTabId = driver.getWindowHandle(); // got the id of the main tab
+        List<WebElement> urls = driver.findElements(By.xpath("//a[@target='_blank']")); // got all links that opens on a new tab
+
+        for (WebElement url : urls) {  // clicked on them except the one has mailto in href attribute
+            if (!url.getAttribute("href").contains("mailto")) {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].click();", url);
+            }
+        }
+
+        Set<String> ids = driver.getWindowHandles(); // got all ids
+
+        for (String id : ids) { // switched them one by one and printed titles and urls of the tabs
+            if (!id.equals(mainTabId)) {
+                driver.switchTo().window(id);
+                System.out.println(driver.getTitle());
+                System.out.println(driver.getCurrentUrl());
+            }
+        }
+
+        for (String id : ids) { // closed all tabs one by one except the main tab
+            if (!id.equals(mainTabId)) {
+                driver.switchTo().window(id);
+                driver.close();
+            }
+        }
+
+        driver.switchTo().window(mainTabId);
+        System.out.println(driver.getCurrentUrl());
+        System.out.println(driver.getTitle());
+
+        waitAndQuit();
+    }
+
+
 }
